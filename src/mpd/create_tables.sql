@@ -1,15 +1,15 @@
 BEGIN;
-DROP TABLE IF EXISTS invoice_details, invoice, receipt;
+DROP TABLE IF EXISTS invoices_details, invoices, receipts;
 
-CREATE TABLE receipt (
+CREATE TABLE receipts (
   id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  is_recept BOOLEAN NULL,
-  brand_name VARCHAR(25) NOT NULL,
-  recept_number INTEGER NOT NULL,
-  total INTEGER NOT NULL
+  is_recept BOOLEAN,
+  brand_name VARCHAR(25),
+  receipt_number INTEGER,
+  total INTEGER
 );
 
-CREATE TABLE invoice (
+CREATE TABLE invoices (
   id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   siret_number INTEGER,
   is_invoice BOOLEAN,
@@ -21,17 +21,17 @@ CREATE TABLE invoice (
   TVA_number INTEGER
 );
 
-CREATE TABLE invoice_details (
+CREATE TABLE invoices_details (
   id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   product VARCHAR(50),
   quantity INTEGER,
   unit_price INTEGER,
-  invoice_id INTEGER
+  invoices_id INTEGER
 );
 
-ALTER TABLE invoice_details 
+ALTER TABLE invoices_details 
 ADD CONSTRAINT fk_invoice_id_constraint 
-FOREIGN KEY (invoice_id) 
-REFERENCES invoice(id);
+FOREIGN KEY (invoices_id) 
+REFERENCES invoices(id);
 
 COMMIT;

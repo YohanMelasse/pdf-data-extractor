@@ -17,7 +17,7 @@ const pdfDoc = await PDFDocument.load(document, {
   updateMetadata: false
 });
 
-  console.log('échance:', pdfDoc.getTitle());
+  console.log('échéance:', pdfDoc.getTitle());
 };
 
 export {extractMetadata};
